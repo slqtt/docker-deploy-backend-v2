@@ -2,23 +2,21 @@ version: '3.8'
 
 services:
   backend:
-    image: slqtt/234-deploylab-backend:latest
+    build: .
     ports:
-      - "8083:8080"
-    restart: always
+      - "8084:8080"   
     networks:
       - app-net
 
   frontend:
     image: nginx:alpine
     ports:
-      - "8081:80"
+      - "8082:80"     
     volumes:
       - ./dist:/usr/share/nginx/html
       - ./nginx-custom.conf:/etc/nginx/conf.d/default.conf
     depends_on:
       - backend
-    restart: always
     networks:
       - app-net
 
